@@ -1,0 +1,14 @@
+body {
+	font-family: sans-serif;
+	margin: 0;
+	background: #EEEEEE;
+}
+
+h1 {
+	text-align: center;
+}
+
+/* Enables SVG to scale properly on the page */
+svg {
+	width: 100%;
+}
