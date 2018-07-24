@@ -34,12 +34,6 @@ stave03.setContext(context3).draw();
 	Measure 1, 16th notes
 */
 
-function contextMaker(divID) {
-	var d = document.querySelector(divID);
-	var r = new VF.Renderer(d, VF.Renderer.Backends.SVG);
-	r.resize(MEASURE_WIDTH, MEASURE_HEIGHT);
-	return r.getContext();
-}
 
 // This code coupled with css entry for SVG makes the svg scale and respond to the
 // webpage changing size and shape
