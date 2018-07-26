@@ -23,18 +23,23 @@ function addGraceNote() {
 	return new VF.GraceNoteGroup([gracenote]);
 }
 
-function addSouperGraceNote(StaveNote) {
-	StaveNote.addModifier(0, addGraceNote);
-}
-
 // Create 4 new StaveNotes
-function sixteenth() {
-	return [
+// grace: number 0 to 3, which subdivision to place grace note
+// accent: number 0 to 3, which "" to place accent
+function sixteenth(grace, accent) {
+	var notes = [
 		createNote("16"),
 		createNote("16"),
 		createNote("16"),
 		createNote("16")
 	];
+	if (grace !== -1) {
+		notes[grace].addModifier(0, addGraceNote());
+	}
+	if (accent !== -1) {
+		notes[accent].addArticulation(0, addAccent());
+	}
+	return notes;
 }
 
 // Create 3 new StaveNotes
@@ -46,10 +51,29 @@ function triplet() {
 	];
 }
 
+/*
+	Create first four counts of the grid, one variation at a time
 
-// Create first four counts of the grid, one variation at a time
-function getFourCounts() {
-
+	type: 0 - 16ths, 1 - triplet
+	mods: [graceNote, accent] 
+*/
+function getFourCounts(type, mods) {
+	var notes;
+	if (type === 0) {
+		notes = [
+			sixteenth(mods[0], mods[1]),
+			sixteenth(mods[0], mods[1]),
+			sixteenth(mods[0], mods[1]),
+			sixteenth(mods[0], mods[1])
+		];
+	} else {
+		notes = [
+			triplet(),
+			triplet(),
+			triplet()
+		];
+	}
+	return notes.reduce((acc, val) => acc.concat(val), []);
 }
 
 // Not sure if this will work yet...

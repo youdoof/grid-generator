@@ -19,6 +19,11 @@ svg {
 }
 
 .measure {
-	width: 30%;
+	width: 50%;
+	float: left;
+}
+
+.fifty {
+	width: 50%;
 	float: left;
 }
