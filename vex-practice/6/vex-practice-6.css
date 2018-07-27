@@ -15,6 +15,7 @@ svg {
 
 #container {
 	max-width: 1200px;
+	width: 90%;
 	margin: 20px auto;
 }
 
@@ -25,5 +26,10 @@ svg {
 
 .fifty {
 	width: 50%;
+	float: left;
+}
+
+.thirtythree {
+	width: 33%;
 	float: left;
 }

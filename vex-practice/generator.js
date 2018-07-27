@@ -1,5 +1,16 @@
 var VF = Vex.Flow;
 
+// Partials for creating beats.
+var NONE = -1;
+var FIRST_PARTIAL = 0;
+var SECOND_PARTIAL = 1;
+var THIRD_PARTIAL = 2;
+var FOURTH_PARTIAL = 3;
+
+var SIXTEENTH = 0;
+var TRIPLET = 1;
+var EIGHTH = 2;
+
 function contextMaker(divID) {
 	var d = document.querySelector(divID);
 	var r = new VF.Renderer(d, VF.Renderer.Backends.SVG);
@@ -23,60 +34,75 @@ function addGraceNote() {
 	return new VF.GraceNoteGroup([gracenote]);
 }
 
-// Create 4 new StaveNotes
-// grace: number 0 to 3, which subdivision to place grace note
-// accent: number 0 to 3, which "" to place accent
-function sixteenth(grace, accent) {
-	var notes = [
-		createNote("16"),
-		createNote("16"),
-		createNote("16"),
-		createNote("16")
-	];
-	if (grace !== -1) {
-		notes[grace].addModifier(0, addGraceNote());
+// Work in progress here.
+function getBeat(obj) {
+	var notes;
+
+	if (obj.rhythm === SIXTEENTH) {
+		notes = [
+			createNote("16"),
+			createNote("16"),
+			createNote("16"),
+			createNote("16")
+		];
+	} else if (obj.rhythm === TRIPLET) {
+		notes = [
+			createNote("8"),
+			createNote("8"),
+			createNote("8")
+		];
+	} else if (obj.rhythm === EIGHTH) {
+		notes = [
+			createNote("8"),
+			createNote("8")
+		];
 	}
-	if (accent !== -1) {
-		notes[accent].addArticulation(0, addAccent());
+
+	if (obj.graceNote !== -1) {
+		notes[obj.graceNote].addModifier(0, addGraceNote());
 	}
+	
+	if (obj.accent !== -1) {
+		notes[obj.accent].addArticulation(0, addAccent());
+	}
+
 	return notes;
 }
 
-// Create 3 new StaveNotes
-function triplet() {
-	return [
-		createNote("8"),
-		createNote("8"),
-		createNote("8")
+function getFourCounts(obj) {
+	var fourCounts = [
+		getBeat(obj),
+		getBeat(obj),
+		getBeat(obj),
+		getBeat(obj)
 	];
+	return fourCounts.reduce((acc, val) => acc.concat(val), []);
 }
 
-/*
-	Create first four counts of the grid, one variation at a time
+function getTwoCounts(obj) {
+	var twoCounts = [
+		getBeat(obj),
+		getBeat(obj)
+	];
+	return twoCounts.reduce((acc, val) => acc.concat(val), []);
+}
 
-	type: 0 - 16ths, 1 - triplet
-	mods: [graceNote, accent] 
-*/
-function getFourCounts(type, mods) {
-	var notes;
-	if (type === 0) {
-		notes = [
-			sixteenth(mods[0], mods[1]),
-			sixteenth(mods[0], mods[1]),
-			sixteenth(mods[0], mods[1]),
-			sixteenth(mods[0], mods[1])
-		];
-	} else {
-		notes = [
-			triplet(),
-			triplet(),
-			triplet()
-		];
+function getOneCount(obj) {
+	return getBeat(obj);
+}
+
+function getRandomVariation() {
+	var obj = {
+		rhythm: SIXTEENTH,
+		accent: getRandomVariant([FIRST_PARTIAL, SECOND_PARTIAL, THIRD_PARTIAL, FOURTH_PARTIAL]),
+		graceNote: getRandomVariant([FIRST_PARTIAL, SECOND_PARTIAL, THIRD_PARTIAL, FOURTH_PARTIAL])
 	}
-	return notes.reduce((acc, val) => acc.concat(val), []);
+	return obj;
 }
 
-// Not sure if this will work yet...
-function getTwoCounts() {
-
+// From MDN, Random Generator
+function getRandomVariant(pass) {
+  min = 0;
+  max = pass.length;
+  return pass[Math.floor(Math.random() * (max - min + 1)) + min]; //The maximum is inclusive and the minimum is inclusive 
 }
