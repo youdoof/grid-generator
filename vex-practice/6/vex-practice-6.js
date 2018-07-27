@@ -71,9 +71,7 @@ var variation2 = {
 var variation3 = {
 	rhythm: SIXTEENTH,
 	accent: FIRST_PARTIAL,
-	graceNote: SECOND_PARTIAL,
-	drag:
-	buzz:
+	graceNote: SECOND_PARTIAL
 }
 
 var variation4 = {
