@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Grid Generator</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- Stylesheets -->
+		<link rel="stylesheet" type="text/css" href="css/responsive-grid.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+
+		<!-- JavaScript -->
+		<script src="js/vexflow-debug.js"></script>
+		<script src="js/generator.js"></script>
+	</head>
+	<body>
+		<header>
+			<div class="section group">
+				<div class="col span_12_of_12">
+					<h1>4&ndash;2&ndash;1 Generator</h1>
+				</div>
+			</div>
+		</header>
+
+		<div class="section group">
+			<div class="col span_6_of_12 measure" id="measure1"></div>
+			<div class="col span_6_of_12 measure" id="measure2"></div>
+			<div class="col span_6_of_12 measure" id="measure3"></div>
+			<div class="col span_6_of_12 measure" id="measure4"></div>
+			<div class="col span_6_of_12 measure" id="measure5"></div>
+			<div class="col span_6_of_12 measure" id="measure6"></div>
+			<div class="col span_6_of_12 measure" id="measure7"></div>
+			<div class="col span_6_of_12 measure" id="measure8"></div>
+		</div>
+
+		<div class="section group">
+			<div class="col span_12_of_12">
+				<p>
+					Hey don't press anything down here. It's not linked up to anything at the
+					moment. I'd love for it to be functional, but it is a work in progress
+					for now. Thanks for stopping by!
+				</p>
+			</div>
+		</div>
+
+		<div class="section group">
+			<form>
+				<div class="col span_6_of_12">
+					<fieldset>
+						<legend>Moving</legend>
+						<div class="section group">
+							<div class="col span_2_of_12">
+								<input type="radio" id="accentMoving" name="moving">
+								<label for="accentMoving">Accent</label>
+							</div>
+							<div class="col span_2_of_12">
+								<input type="radio" id="flamMoving" name="moving">
+								<label for="flamMoving">Flam</label>
+							</div>
+							<div class="col span_2_of_12">
+								<input type="radio" id="dragMoving" name="moving">
+								<label for="dragMoving">Drag</label>
+							</div>
+							<div class="col span_2_of_12">
+								<input type="radio" id="buzzMoving" name="moving">
+								<label for="buzzMoving">Buzz</label>
+							</div>
+							<div class="col span_2_of_12">
+								<input type="radio" id="cheeseMoving" name="moving">
+								<label for="cheeseMoving">Cheese</label>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+
+				<div class="col span_6_of_12">
+					<fieldset>
+						<legend>Stationary</legend>
+						<div class="section group">
+							<div class="col span_2_of_12">
+								<input type="radio" id="accentStation" name="stationary">
+								<label for="accentStation">Accent</label>
+							</div>
+							<div class="col span_2_of_12">
+								<input type="radio" id="flamStation" name="stationary">
+								<label for="flamStation">Flam</label>
+							</div>
+							<div class="col span_2_of_12">
+								<input type="radio" id="dragStation" name="stationary">
+								<label for="dragStation">Drag</label>
+							</div>
+							<div class="col span_2_of_12">
+								<input type="radio" id="buzzStation" name="stationary">
+								<label for="buzzStation">Buzz</label>
+							</div>
+							<div class="col span_2_of_12">
+								<input type="radio" id="cheeseStation" name="stationary">
+								<label for="cheeseStation">Cheese</label>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<button id="generate">Generate</button>
+			</form>
+		</div>
+
+		<script src="js/interactor.js"></script>
+	</body>
+</html>

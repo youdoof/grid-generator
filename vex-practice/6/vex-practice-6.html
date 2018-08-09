@@ -9,7 +9,7 @@
 	<body>
 		<h1>4-2-1 Grid Generator</h1>
 		
-		<div id="container">
+		<div class="container">
 			<div class="measure" id="measure1"></div>
 			<div class="measure" id="measure2"></div>
 			<div class="measure" id="measure3"></div>
@@ -18,7 +18,30 @@
 			<div class="measure" id="measure6"></div>
 			<div class="measure" id="measure7"></div>
 			<div class="measure" id="measure8"></div>
-			<div class="measure" id="measure9"></div>
+			<!-- <div class="measure" id="measure9"></div> -->
+		</div>
+
+		<div class="container">
+			<form>
+				<fieldset class="third">
+					<legend>Moving</legend>
+					<input type="radio" id="accentMoving" name="moving" value="accent">
+					<label for="accentMoving">Accent</label>
+				</fieldset>
+
+				<fieldset class="third">
+					<legend>Stationary</legend>
+					<input type="radio" id="accentStation" name="stationary" value="accent">
+					<label for="accentStation">Accent</label>
+				</fieldset>
+
+				<fieldset class="third">
+					<legend>Randomization</legend>
+					<button type="submit">
+						Generate
+					</button>
+				</fieldset>
+			</form>
 		</div>
 
 		<script src="vex-practice-6.js"></script>

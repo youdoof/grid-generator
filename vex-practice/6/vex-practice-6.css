@@ -13,7 +13,11 @@ svg {
 	width: 100%;
 }
 
-#container {
+fieldset {
+	float: left;
+}
+
+.container {
 	max-width: 1200px;
 	width: 90%;
 	margin: 20px auto;
@@ -24,12 +28,12 @@ svg {
 	float: left;
 }
 
-.fifty {
+.half {
 	width: 50%;
 	float: left;
 }
 
-.thirtythree {
-	width: 33%;
+.third {
+	width: 30%;
 	float: left;
 }

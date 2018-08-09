@@ -2,7 +2,7 @@ var VF = Vex.Flow;
 
 // Constants for stave size and locations
 var MEASURE_WIDTH = 600;
-var MEASURE_HEIGHT = 150;
+var MEASURE_HEIGHT = 90;
 
 // Get drawing context
 var context1 = contextMaker("#measure1");
@@ -15,7 +15,7 @@ var context7 = contextMaker("#measure7");
 var context8 = contextMaker("#measure8");
 // var context9 = contextMaker("#measure9");
 
-// Create a stave at position 10, 40, of width 150 on the canvas
+// Create a stave of width 90 on the canvas
 var stave01 = new VF.Stave(0, 0, MEASURE_WIDTH);
 var stave02 = new VF.Stave(0, 0, MEASURE_WIDTH);
 var stave03 = new VF.Stave(0, 0, MEASURE_WIDTH);
@@ -59,25 +59,29 @@ stave08.setContext(context8).draw();
 var variation1 = {
 	rhythm: SIXTEENTH,
 	accent: SECOND_PARTIAL,
-	graceNote: FIRST_PARTIAL
+	flam: FIRST_PARTIAL,
+	drag: SECOND_PARTIAL
 }
 
 var variation2 = {
 	rhythm: SIXTEENTH,
 	accent: SECOND_PARTIAL,
-	graceNote: SECOND_PARTIAL
+	flam: SECOND_PARTIAL,
+	drag: THIRD_PARTIAL
 }
 
 var variation3 = {
 	rhythm: SIXTEENTH,
 	accent: SECOND_PARTIAL,
-	graceNote: THIRD_PARTIAL
+	flam: THIRD_PARTIAL,
+	drag: FOURTH_PARTIAL
 }
 
 var variation4 = {
 	rhythm: SIXTEENTH,
 	accent: SECOND_PARTIAL,
-	graceNote: FOURTH_PARTIAL
+	flam: FOURTH_PARTIAL,
+	drag: FIRST_PARTIAL
 }
 
 /*
@@ -150,9 +154,15 @@ var b08 = VF.Beam.generateBeams(m08, {stem_direction: 1});
 VF.Formatter.FormatAndDraw(context8, stave08, m08);
 b08.forEach(function(b) {b.setContext(context8).draw()});
 
+
+
+var btn = document.querySelector("#generate");
+// btn.onclick(dingus());
+
+
 // This code coupled with css entry for SVG makes the svg scale and respond to the
 // webpage changing size and shape
 var svg = document.querySelectorAll('svg');
 svg.forEach(function(f){
-	f.setAttribute("viewBox", "0 0 600 150");
+	f.setAttribute("viewBox", `0 0 ${MEASURE_WIDTH} ${MEASURE_HEIGHT}`);
 })
