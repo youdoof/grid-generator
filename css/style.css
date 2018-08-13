@@ -6,7 +6,7 @@ html {
 body {
 	width: 100%;
 	margin: 0 auto;
-	background-color: #FFF; 
+	background-color: #FFF;
 }
 
 h1 {
@@ -24,6 +24,10 @@ svg {
 
 p {
 	margin: 0 5%;
+}
+
+.section .group {
+	margin: 10%;
 }
 
 
