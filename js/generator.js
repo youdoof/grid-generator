@@ -4,12 +4,12 @@ var VF = Vex.Flow;
 var MEASURE_WIDTH = 600;
 var MEASURE_HEIGHT = 90;
 
-// Bar Lengths
+// Bar Lengths, related to 2, 3, and 4 variations
 var EIGHT_BARS = 8;
 var NINE_BARS = 9;
 var FOUR_BARS = 4;
 
-// Partials for creating beats.
+// Partials for creating beats
 var NONE = -1;
 var FIRST_PARTIAL = 0;
 var SECOND_PARTIAL = 1;
@@ -85,7 +85,7 @@ function addAccent() {
 
 // .addModifier(0, addFlam())
 function addFlam() {
-	var flam = new VF.GraceNote({keys: ["c/5"], duration: "8", slash: true });
+	var flam = new VF.GraceNote({keys: ["c/5"], duration: "8", slash: false });
 	return new VF.GraceNoteGroup([flam]);
 }
 

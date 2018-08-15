@@ -1,0 +1,40 @@
+************************
+*** Drawing Measures ***
+************************
+
+1) Determine # of measures.
+2) Show/hide required measure divs
+3) Get contexts setup
+4) Start drawing
+
+-----------------------------------------
+*****************
+*** User Menu ***
+*****************
+
+1) Moving / Stationary (Create Your Own)
+    > Choose what moves
+        - Accent, Ornamentation
+    > Choose how it moves
+        - Backwards, Forwards
+        - Offset Backwards, Offset Forwards
+    > Choose what stays put
+        - Checkboxes for which partial?
+    > Choose how many of each
+        - 1 Drag, 2 Accents
+2) Standard Grids (Examples)
+    > 1 Accent Moving (16th / Triplet)
+    > More variants that are standardized
+3) Random (Randomize It!)
+    > Big randomize button
+    > Choose how much to randomize?
+    > Difficulty button?
+
+-----------------------------------------
+**********************
+*** Assemble 4-2-1 ***
+**********************
+
+1) Establish Variations
+    - 8 bar or 9 bar?
+    -

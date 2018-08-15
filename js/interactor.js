@@ -20,7 +20,7 @@ var context5 = createContext("#measure5");
 var context6 = createContext("#measure6");
 var context7 = createContext("#measure7");
 var context8 = createContext("#measure8");
-var context9 = createContext("#measure9");
+// var context9 = createContext("#measure9");
 
 // var staves = createStaves(EIGHT_BARS);
 
@@ -33,7 +33,7 @@ var stave05 = new VF.Stave(0, 0, MEASURE_WIDTH);
 var stave06 = new VF.Stave(0, 0, MEASURE_WIDTH);
 var stave07 = new VF.Stave(0, 0, MEASURE_WIDTH);
 var stave08 = new VF.Stave(0, 0, MEASURE_WIDTH);
-var stave09 = new VF.Stave(0, 0, MEAS_WIDTH_TRIP);
+// var stave09 = new VF.Stave(0, 0, MEAS_WIDTH_TRIP);
 
 // Repeats ?
 stave05.setBegBarType(VF.Barline.type.REPEAT_BEGIN);
@@ -52,7 +52,7 @@ stave05.setContext(context5).draw();
 stave06.setContext(context6).draw();
 stave07.setContext(context7).draw();
 stave08.setContext(context8).draw();
-stave09.setContext(context9).draw();
+// stave09.setContext(context9).draw();
 
 // setContextAndDraw(staves, contexts);
 
@@ -174,31 +174,31 @@ b08.forEach(function(b) {b.setContext(context8).draw()});
 	MEASURE 09
 	TRIPLET TOWN
 */
+//
+// var m09 = getFourCounts(trip1);
+// var b09 = [
+// 	[0, 3],
+// 	[3, 6],
+// 	[6, 9],
+// 	[9, 12]
+// ].map(function(n) {
+// 	return new VF.Beam(m09.slice(n[0], n[1]));
+// });
+// var t09 = [
+// 	[0,3],
+// 	[3,6],
+// 	[6,9],
+// 	[9,12]
+// ].map(function(n) {
+// 	return new VF.Tuplet(m09.slice(n[0], n[1]));
+// });
+// // var simpleTriplet = new Vex.Flow.Tuplet(notes.slice(14,17));
+// VF.Formatter.FormatAndDraw(context9, stave09, m09);
+// b09.forEach(function(b) {b.setContext(context9).draw()});
+// t09.forEach(function(t) {t.setContext(context9).draw()});
 
-var m09 = getFourCounts(trip1);
-var b09 = [
-	[0, 3],
-	[3, 6],
-	[6, 9],
-	[9, 12]
-].map(function(n) {
-	return new VF.Beam(m09.slice(n[0], n[1]));
-});
-var t09 = [
-	[0,3],
-	[3,6],
-	[6,9],
-	[9,12]
-].map(function(n) {
-	return new VF.Tuplet(m09.slice(n[0], n[1]));
-});
-// var simpleTriplet = new Vex.Flow.Tuplet(notes.slice(14,17));
-VF.Formatter.FormatAndDraw(context9, stave09, m09);
-b09.forEach(function(b) {b.setContext(context9).draw()});
-t09.forEach(function(t) {t.setContext(context9).draw()});
 
-
-var btn = document.querySelector("#generate");
+var btn = document.querySelector("#generateBtn");
 // btn.onclick(dingus());
 
 
@@ -209,7 +209,7 @@ svg.forEach(function(f){
 	f.setAttribute("viewBox", `0 0 ${MEASURE_WIDTH} ${MEASURE_HEIGHT}`);
 })
 
-document.querySelector('div #measure9 svg').setAttribute("viewBox", `0 0 ${MEAS_WIDTH_TRIP} ${MEASURE_HEIGHT}`);
+// document.querySelector('div #measure9 svg').setAttribute("viewBox", `0 0 ${MEAS_WIDTH_TRIP} ${MEASURE_HEIGHT}`);
 
 // Pass in querySelectorAll of measures.
 function deleteBar(q) {
