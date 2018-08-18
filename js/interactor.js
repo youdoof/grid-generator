@@ -1,13 +1,5 @@
 var VF = Vex.Flow;
 
-// Constants for stave size and locations
-// 16TH NOTE
-var MEASURE_WIDTH = 600;
-var MEASURE_HEIGHT = 90;
-
-// triplet
-var MEAS_WIDTH_TRIP = 450;
-
 // Get drawing context
 
 // var contexts = createContexts(EIGHT_BARS);
@@ -20,19 +12,18 @@ var context5 = createContext("#measure5");
 var context6 = createContext("#measure6");
 var context7 = createContext("#measure7");
 var context8 = createContext("#measure8");
-// var context9 = createContext("#measure9");
 
 // var staves = createStaves(EIGHT_BARS);
 
 // Create a stave of width 90 on the canvas
-var stave01 = new VF.Stave(0, 0, MEASURE_WIDTH);
-var stave02 = new VF.Stave(0, 0, MEASURE_WIDTH);
-var stave03 = new VF.Stave(0, 0, MEASURE_WIDTH);
-var stave04 = new VF.Stave(0, 0, MEASURE_WIDTH);
-var stave05 = new VF.Stave(0, 0, MEASURE_WIDTH);
-var stave06 = new VF.Stave(0, 0, MEASURE_WIDTH);
-var stave07 = new VF.Stave(0, 0, MEASURE_WIDTH);
-var stave08 = new VF.Stave(0, 0, MEASURE_WIDTH);
+var stave01 = new VF.Stave(0, 0, MEASURE_WIDTH_FOUR);
+var stave02 = new VF.Stave(0, 0, MEASURE_WIDTH_FOUR);
+var stave03 = new VF.Stave(0, 0, MEASURE_WIDTH_FOUR);
+var stave04 = new VF.Stave(0, 0, MEASURE_WIDTH_FOUR);
+var stave05 = new VF.Stave(0, 0, MEASURE_WIDTH_FOUR);
+var stave06 = new VF.Stave(0, 0, MEASURE_WIDTH_FOUR);
+var stave07 = new VF.Stave(0, 0, MEASURE_WIDTH_FOUR);
+var stave08 = new VF.Stave(0, 0, MEASURE_WIDTH_FOUR);
 // var stave09 = new VF.Stave(0, 0, MEAS_WIDTH_TRIP);
 
 // Repeats ?
@@ -52,7 +43,6 @@ stave05.setContext(context5).draw();
 stave06.setContext(context6).draw();
 stave07.setContext(context7).draw();
 stave08.setContext(context8).draw();
-// stave09.setContext(context9).draw();
 
 // setContextAndDraw(staves, contexts);
 
@@ -98,6 +88,10 @@ var trip1 = {
 	flam: NONE,
 	drag: SECOND_PARTIAL
 }
+
+var variations = [variation1, variation2, variation3, variation4];
+
+// var measures = createMeasures(variations);
 
 /*
 	MEASURE 01
@@ -206,7 +200,7 @@ var btn = document.querySelector("#generateBtn");
 // webpage changing size and shape
 var svg = document.querySelectorAll('svg');
 svg.forEach(function(f){
-	f.setAttribute("viewBox", `0 0 ${MEASURE_WIDTH} ${MEASURE_HEIGHT}`);
+	f.setAttribute("viewBox", `0 0 ${MEASURE_WIDTH_FOUR} ${MEASURE_HEIGHT}`);
 })
 
 // document.querySelector('div #measure9 svg').setAttribute("viewBox", `0 0 ${MEAS_WIDTH_TRIP} ${MEASURE_HEIGHT}`);

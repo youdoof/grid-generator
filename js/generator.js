@@ -1,7 +1,10 @@
 var VF = Vex.Flow;
 
 // Constants for stave size and locations
-var MEASURE_WIDTH = 600;
+var MAX_RESOLUTION_WIDTH = 1200;
+var MEASURE_WIDTH_FOUR = MAX_RESOLUTION_WIDTH / 2;
+var MEASURE_WIDTH_THREE = MAX_RESOLUTION_WIDTH / 3;
+var MEASURE_WIDTH_TWO = MAX_RESOLUTION_WIDTH / 2;
 var MEASURE_HEIGHT = 90;
 
 // Bar Lengths, related to 2, 3, and 4 variations
@@ -28,7 +31,7 @@ function createContexts(number) {
 			document.querySelector(`#measure${i}`),
 			VF.Renderer.Backends.SVG
 		);
-		temp.resize(MEASURE_WIDTH, MEASURE_HEIGHT);
+		temp.resize(MEASURE_WIDTH_FOUR, MEASURE_HEIGHT);
 		contexts.push(temp);
 	}
 	return contexts;
@@ -37,18 +40,14 @@ function createContexts(number) {
 function createContext(divID) {
 	var d = document.querySelector(divID);
 	var r = new VF.Renderer(d, VF.Renderer.Backends.SVG);
-	if (divID === "#measure9") {
-		r.resize(MEAS_WIDTH_TRIP, MEASURE_HEIGHT);
-	} else {
-		r.resize(MEASURE_WIDTH, MEASURE_HEIGHT);
-	}
+	r.resize(MEASURE_WIDTH_FOUR, MEASURE_HEIGHT);
 	return r.getContext();
 }
 
 function createStaves(number) {
 	var staves = [];
 	for (var i = 0; i < number; i++) {
-		staves.push(new VF.Stave(0, 0, MEASURE_WIDTH));
+		staves.push(new VF.Stave(0, 0, MEASURE_WIDTH_FOUR));
 	}
 	return staves;
 }
@@ -150,11 +149,47 @@ function getOneCount(obj) {
 	return getBeat(obj);
 }
 
+function getOneBarOnes(obj) {
+	return 
+}
+
+
+
 // Work in progress here.
-function fillBar(obj, mods) {
-	var bars = [];
-	for (var i = 0; i < mods.length; i++) {
-		bars.push(getFourCounts(mods[i]));
+/*
+	Meat & Potatoes here.
+
+	createMeasures puts together all of the notes to create each measure of
+	the 4-2-1 grid. Trying my best to keep this thing modular and flexible.
+*/
+function createMeasures(variations) {
+	var measures = [];
+	// *** 4 *** //
+	// Works for 2, 3, and 4 variations
+	for (var i = 0; i < variations.length; i++) {
+		measures.push(getFourCounts(variations[i]));
 	}
-	return bars;
+
+	if (variations.length === EIGHT_BARS / 2) {
+		// *** 2 *** //
+		for (var i = 0; i < variations.length; i = i + 2) {
+			measures.push(getTwoCounts(variations[i]).
+			concat(getTwoCounts(variations[i+1])));
+		}
+		// *** 1 *** //
+		for (var i = 0; i < 2; i++) {
+			var temp = [];
+			for (var j = 0; j < variations.length; j++) {
+				temp.concat(getOneCount(variations[j]));
+			}
+			measures.push(temp);
+		}
+
+	} else if (variations.length === NINE_BARS / 2) {
+		// Will find out soon how to do this.
+	} else {
+		// This for only 2 variations.
+	}
+
+	return measures;
 }

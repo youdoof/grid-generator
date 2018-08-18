@@ -36,5 +36,7 @@
 **********************
 
 1) Establish Variations
-    - 8 bar or 9 bar?
-    -
+    - 8 bar or 9 bar? ( or 4 bar )
+    - Fill 4's
+    - Fill 2's
+    - Fill 1's
