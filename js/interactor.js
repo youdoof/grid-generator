@@ -1,3 +1,4 @@
+'use strict';
 var VF = Vex.Flow;
 
 // Get drawing context
@@ -54,40 +55,14 @@ stave08.setContext(context8).draw();
 	Note: this only works for the 16th note version, which has 4 variants.
 	the triplet version would have only 3 variants, so need to get that.
 */
-var variation1 = {
-	rhythm: SIXTEENTH,
-	accent: SECOND_PARTIAL,
-	flam: FIRST_PARTIAL,
-	drag: SECOND_PARTIAL
-}
 
-var variation2 = {
-	rhythm: SIXTEENTH,
-	accent: SECOND_PARTIAL,
-	flam: SECOND_PARTIAL,
-	drag: THIRD_PARTIAL
-}
+var variation1 = new Variation(SIXTEENTH, SECOND_PARTIAL, FIRST_PARTIAL, SECOND_PARTIAL);
 
-var variation3 = {
-	rhythm: SIXTEENTH,
-	accent: SECOND_PARTIAL,
-	flam: THIRD_PARTIAL,
-	drag: FOURTH_PARTIAL
-}
+var variation2 = new Variation(SIXTEENTH, SECOND_PARTIAL, SECOND_PARTIAL, THIRD_PARTIAL);
 
-var variation4 = {
-	rhythm: SIXTEENTH,
-	accent: SECOND_PARTIAL,
-	flam: FOURTH_PARTIAL,
-	drag: FIRST_PARTIAL
-}
+var variation3 = new Variation(SIXTEENTH, SECOND_PARTIAL, THIRD_PARTIAL, FOURTH_PARTIAL);
 
-var trip1 = {
-	rhythm: TRIPLET,
-	accent: SECOND_PARTIAL,
-	flam: NONE,
-	drag: SECOND_PARTIAL
-}
+var variation4 = new Variation(SIXTEENTH, SECOND_PARTIAL, FOURTH_PARTIAL, FIRST_PARTIAL);
 
 var variations = [variation1, variation2, variation3, variation4];
 

@@ -1,3 +1,4 @@
+'use strict';
 var VF = Vex.Flow;
 
 // Constants for stave size and locations
@@ -77,6 +78,29 @@ function createNote(duration) {
 	return new VF.StaveNote({keys: ["c/5"], duration: duration});
 }
 
+	return [
+		createNote("16"),
+		createNote("16"),
+		createNote("16"),
+		createNote("16")
+	];
+}
+
+function rhythmTriplet() {
+	return [
+		createNote("8"),
+		createNote("8"),
+		createNote("8")
+	];
+}
+
+function rhythmEighth() {
+	return [
+		createNote("8"),
+		createNote("8")
+	];
+}
+
 // .addArticulation(0, addAccent())
 function addAccent() {
 	return new VF.Articulation("a>").setPosition(3);
@@ -88,40 +112,33 @@ function addFlam() {
 	return new VF.GraceNoteGroup([flam]);
 }
 
+function newTremolo() {
+	return new VF.Tremolo(1);
+}
+
 // Work in progress here.
 function getBeat(obj) {
 	var notes;
 
+	// There's a smarter way to do this
 	if (obj.rhythm === SIXTEENTH) {
-		notes = [
-			createNote("16"),
-			createNote("16"),
-			createNote("16"),
-			createNote("16")
-		];
+		notes = rhythmSixteenth();
 	} else if (obj.rhythm === TRIPLET) {
-		notes = [
-			createNote("8"),
-			createNote("8"),
-			createNote("8")
-		];
+		notes = rhythmTriplet();
 	} else if (obj.rhythm === EIGHTH) {
-		notes = [
-			createNote("8"),
-			createNote("8")
-		];
+		notes = rhythmEighth();
 	}
 
-	if (obj.flam !== -1) {
+	if (obj.flam !== NONE) {
 		notes[obj.flam].addModifier(0, addFlam());
 	}
 
-	if (obj.accent !== -1) {
+	if (obj.accent !== NONE) {
 		notes[obj.accent].addArticulation(0, addAccent());
 	}
 
-	if (obj.drag !== -1) {
-		notes[obj.drag].addArticulation(0, new VF.Tremolo(1));
+	if (obj.drag !== NONE) {
+		notes[obj.drag].addArticulation(0, newTremolo());
 	}
 
 	return notes;
@@ -147,10 +164,6 @@ function getTwoCounts(obj) {
 
 function getOneCount(obj) {
 	return getBeat(obj);
-}
-
-function getOneBarOnes(obj) {
-	return 
 }
 
 
@@ -185,7 +198,7 @@ function createMeasures(variations) {
 			measures.push(temp);
 		}
 
-	} else if (variations.length === NINE_BARS / 2) {
+	} else if (variations.length === NINE_BARS / 3) {
 		// Will find out soon how to do this.
 	} else {
 		// This for only 2 variations.
