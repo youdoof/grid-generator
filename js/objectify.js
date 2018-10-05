@@ -1,12 +1,13 @@
-// Variation Constructor
-function Variation(rhythm, accent, flam, drag) {
+// Partial Constructor
+function Partial(rhythm, accent, flam, drag) {
     this.rhythm = rhythm;
     this.accent = accent;
     this.flam = flam;
     this.drag = drag;
 }
 
-Variation.prototype.getBeat = function() {
+// Partial Methods
+Partial.prototype.getBeat = function() {
     var notes;
 
 	if (this.rhythm === SIXTEENTH) {
@@ -43,6 +44,39 @@ Variation.prototype.getBeat = function() {
 
 	return notes;
 }
-Variation.prototype.getFourCounts = function() {
+Partial.prototype.getFourCounts = function() {
+	var fourCounts = [
+		this.getBeat(),
+		this.getBeat(),
+		this.getBeat(),
+		this.getBeat()
+	];
+	return fourCounts.reduce((acc, val) => acc.concat(val), []);
+}
+Partial.prototype.getTwoCounts = function() {
+	var twoCounts = [
+		this.getBeat(),
+		this.getBeat()
+	];
+	return twoCounts.reduce((acc, val) => acc.concat(val), []);
+}
+Partial.prototype.getOneCount = function() {
+	return this.getBeat();
+}
 
+// Measure Constructor
+function Measure(partials) {
+	if (partials.length = FOUR_PARTIALS) {
+		this.p1 = partials[0];
+		this.p2 = partials[1];
+		this.p3 = partials[2];
+		this.p4 = partials[3];
+	} else if (partials.length = THREE_PARTIALS) {
+		this.p1 = partials[0];
+		this.p2 = partials[1];
+		this.p3 = partials[2];
+	} else if (partials.length = TWO_PARTIALS) {
+		this.p1 = partials[0];
+		this.p2 = partials[1];
+	}
 }

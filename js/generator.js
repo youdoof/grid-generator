@@ -1,17 +1,21 @@
 'use strict';
 var VF = Vex.Flow;
 
+// Constants for # of measures across screen
+var TWO_MEASURE_SPAN = 2;
+var THREE_MEASURE_SPAN = 3;
+
 // Constants for stave size and locations
 var MAX_RESOLUTION_WIDTH = 1200;
-var MEASURE_WIDTH_FOUR = MAX_RESOLUTION_WIDTH / 2;
-var MEASURE_WIDTH_THREE = MAX_RESOLUTION_WIDTH / 3;
-var MEASURE_WIDTH_TWO = MAX_RESOLUTION_WIDTH / 2;
+var MEASURE_WIDTH_FOUR = MAX_RESOLUTION_WIDTH / TWO_MEASURE_SPAN;
+var MEASURE_WIDTH_THREE = MAX_RESOLUTION_WIDTH / THREE_MEASURE_SPAN;
+var MEASURE_WIDTH_TWO = MAX_RESOLUTION_WIDTH / TWO_MEASURE_SPAN;
 var MEASURE_HEIGHT = 90;
 
-// Bar Lengths, related to 2, 3, and 4 variations
-var EIGHT_BARS = 8;
-var NINE_BARS = 9;
-var FOUR_BARS = 4;
+// Bar Lengths, related to 2, 3, and 4 partials
+var FOUR_PARTIALS = 8;
+var THREE_PARTIALS = 9;
+var TWO_PARTIALS = 4;
 
 // Partials for creating beats
 var NONE = -1;
@@ -25,6 +29,7 @@ var SIXTEENTH = 0;
 var TRIPLET = 1;
 var EIGHTH = 2;
 
+// Setup Contexts for each measure on the page
 function createContexts(number) {
 	var contexts = [];
 	for (i = 1; i <= number; i++) {
@@ -38,6 +43,7 @@ function createContexts(number) {
 	return contexts;
 }
 
+// Setup context for a measure
 function createContext(divID) {
 	var d = document.querySelector(divID);
 	var r = new VF.Renderer(d, VF.Renderer.Backends.SVG);
@@ -45,6 +51,7 @@ function createContext(divID) {
 	return r.getContext();
 }
 
+// Setup measures *hardcoded for 4 partials right now*
 function createStaves(number) {
 	var staves = [];
 	for (var i = 0; i < number; i++) {
@@ -53,13 +60,14 @@ function createStaves(number) {
 	return staves;
 }
 
+// Place repeats in measures 
 function createRepeats(staves) {
-	if (staves.length === EIGHT_BARS) {
+	if (staves.length === FOUR_PARTIALS) {
 		staves[4].setBegBarType(VF.Barline.type.REPEAT_BEGIN);
 		staves[5].setEndBarType(VF.Barline.type.REPEAT_END);
 		staves[6].setBegBarType(VF.Barline.type.REPEAT_BEGIN);
 		staves[7].setEndBarType(VF.Barline.type.REPEAT_END);
-	} else if (staves.length === FOUR_BARS) {
+	} else if (staves.length === TWO_PARTIALS) {
 		for (var i = 0; i < staves.length; i++) {
 			staves[i].setBegBarType(VF.Barline.type.REPEAT_BEGIN);
 			staves[i].setEndBarType(VF.Barline.type.REPEAT_END);
@@ -78,6 +86,7 @@ function createNote(duration) {
 	return new VF.StaveNote({keys: ["c/5"], duration: duration});
 }
 
+function rhythmSixteenth() {
 	return [
 		createNote("16"),
 		createNote("16"),
@@ -175,33 +184,33 @@ function getOneCount(obj) {
 	createMeasures puts together all of the notes to create each measure of
 	the 4-2-1 grid. Trying my best to keep this thing modular and flexible.
 */
-function createMeasures(variations) {
+function createMeasures(partials) {
 	var measures = [];
 	// *** 4 *** //
-	// Works for 2, 3, and 4 variations
-	for (var i = 0; i < variations.length; i++) {
-		measures.push(getFourCounts(variations[i]));
+	// Works for 2, 3, and 4 partials
+	for (var i = 0; i < partials.length; i++) {
+		measures.push(getFourCounts(partials[i]));
 	}
 
-	if (variations.length === EIGHT_BARS / 2) {
+	if (partials.length === FOUR_PARTIALS / 2) {
 		// *** 2 *** //
-		for (var i = 0; i < variations.length; i = i + 2) {
-			measures.push(getTwoCounts(variations[i]).
-			concat(getTwoCounts(variations[i+1])));
+		for (var i = 0; i < partials.length; i = i + 2) {
+			measures.push(getTwoCounts(partials[i]).
+			concat(getTwoCounts(partials[i+1])));
 		}
 		// *** 1 *** //
 		for (var i = 0; i < 2; i++) {
 			var temp = [];
-			for (var j = 0; j < variations.length; j++) {
-				temp.concat(getOneCount(variations[j]));
+			for (var j = 0; j < partials.length; j++) {
+				temp.concat(getOneCount(partials[j]));
 			}
 			measures.push(temp);
 		}
 
-	} else if (variations.length === NINE_BARS / 3) {
+	} else if (partials.length === THREE_PARTIALS / 3) {
 		// Will find out soon how to do this.
 	} else {
-		// This for only 2 variations.
+		// This for only 2 partials.
 	}
 
 	return measures;
