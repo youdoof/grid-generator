@@ -1,0 +1,15 @@
+body {
+    margin: 5%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+div {
+    height: 1em;
+    margin: 0 auto;
+}
+
+div div {
+    width: 25%;
+    background: green;
+    float: left;
+}

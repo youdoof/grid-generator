@@ -66,17 +66,26 @@ Partial.prototype.getOneCount = function() {
 
 // Measure Constructor
 function Measure(partials) {
-	if (partials.length = FOUR_PARTIALS) {
+	if (partials.length = FOUR_PARTIALS_MEASURE_COUNT) {
 		this.p1 = partials[0];
 		this.p2 = partials[1];
 		this.p3 = partials[2];
 		this.p4 = partials[3];
-	} else if (partials.length = THREE_PARTIALS) {
+	} else if (partials.length = THREE_PARTIALS_MEASURE_COUNT) {
 		this.p1 = partials[0];
 		this.p2 = partials[1];
 		this.p3 = partials[2];
-	} else if (partials.length = TWO_PARTIALS) {
+	} else if (partials.length = TWO_PARTIALS_MEASURE_COUNT) {
 		this.p1 = partials[0];
 		this.p2 = partials[1];
 	}
+}
+Measure.prototype.getFours = function() {
+	// Create measures full of the 4 part of 4-2-1
+}
+Measure.prototype.getTwos = function() {
+	// Create measures full of the 2 part of 4-2-1
+}
+Measure.prototype.getOnes = function() {
+	// Create measures full of the 1 part of 4-2-1
 }

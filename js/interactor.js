@@ -48,7 +48,7 @@ stave08.setContext(context8).draw();
 // setContextAndDraw(staves, contexts);
 
 /*
-	These variations should be customizable by the GUI on the webpage.
+	These partials should be customizable by the GUI on the webpage.
 	That's a plan for the future. Press buttons, check checkboxes.
 	ACHIEVE GREATNESS.
 
@@ -56,22 +56,22 @@ stave08.setContext(context8).draw();
 	the triplet version would have only 3 variants, so need to get that.
 */
 
-var variation1 = new Variation(SIXTEENTH, SECOND_PARTIAL, FIRST_PARTIAL, SECOND_PARTIAL);
+var partial1 = new Partial(SIXTEENTH, SECOND_PARTIAL, FIRST_PARTIAL, SECOND_PARTIAL);
 
-var variation2 = new Variation(SIXTEENTH, SECOND_PARTIAL, SECOND_PARTIAL, THIRD_PARTIAL);
+var partial2 = new Partial(SIXTEENTH, SECOND_PARTIAL, SECOND_PARTIAL, THIRD_PARTIAL);
 
-var variation3 = new Variation(SIXTEENTH, SECOND_PARTIAL, THIRD_PARTIAL, FOURTH_PARTIAL);
+var partial3 = new Partial(SIXTEENTH, SECOND_PARTIAL, THIRD_PARTIAL, FOURTH_PARTIAL);
 
-var variation4 = new Variation(SIXTEENTH, SECOND_PARTIAL, FOURTH_PARTIAL, FIRST_PARTIAL);
+var partial4 = new Partial(SIXTEENTH, SECOND_PARTIAL, FOURTH_PARTIAL, FIRST_PARTIAL);
 
-var variations = [variation1, variation2, variation3, variation4];
+var partials = [partial1, partial2, partial3, partial4];
 
-// var measures = createMeasures(variations);
+// var measures = createMeasures(partials);
 
 /*
 	MEASURE 01
 */
-var m01 = getFourCounts(variation1);
+var m01 = getFourCounts(partial1);
 var b01 = VF.Beam.generateBeams(m01, {stem_direction: 1});
 VF.Formatter.FormatAndDraw(context1, stave01, m01);
 b01.forEach(function(b) {b.setContext(context1).draw()});
@@ -80,7 +80,7 @@ b01.forEach(function(b) {b.setContext(context1).draw()});
 /*
 	MEASURE 02
 */
-var m02 = getFourCounts(variation2);
+var m02 = getFourCounts(partial2);
 var b02 = VF.Beam.generateBeams(m02, {stem_direction: 1});
 VF.Formatter.FormatAndDraw(context2, stave02, m02);
 b02.forEach(function(b) {b.setContext(context2).draw()});
@@ -88,7 +88,7 @@ b02.forEach(function(b) {b.setContext(context2).draw()});
 /*
 	MEASURE 03
 */
-var m03 = getFourCounts(variation3);
+var m03 = getFourCounts(partial3);
 var b03 = VF.Beam.generateBeams(m03, {stem_direction: 1});
 VF.Formatter.FormatAndDraw(context3, stave03, m03);
 b03.forEach(function(b) {b.setContext(context3).draw()});
@@ -96,7 +96,7 @@ b03.forEach(function(b) {b.setContext(context3).draw()});
 /*
 	MEASURE 04
 */
-var m04 = getFourCounts(variation4);
+var m04 = getFourCounts(partial4);
 var b04 = VF.Beam.generateBeams(m04, {stem_direction: 1});
 VF.Formatter.FormatAndDraw(context4, stave04, m04);
 b04.forEach(function(b) {b.setContext(context4).draw()});
@@ -104,7 +104,7 @@ b04.forEach(function(b) {b.setContext(context4).draw()});
 /*
 	MEASURE 05
 */
-var m05 = getTwoCounts(variation1).concat(getTwoCounts(variation2));
+var m05 = getTwoCounts(partial1).concat(getTwoCounts(partial2));
 var b05 = VF.Beam.generateBeams(m05, {stem_direction: 1});
 VF.Formatter.FormatAndDraw(context5, stave05, m05);
 b05.forEach(function(b) {b.setContext(context5).draw()});
@@ -112,7 +112,7 @@ b05.forEach(function(b) {b.setContext(context5).draw()});
 /*
 	MEASURE 06
 */
-var m06 = getTwoCounts(variation3).concat(getTwoCounts(variation4));
+var m06 = getTwoCounts(partial3).concat(getTwoCounts(partial4));
 var b06 = VF.Beam.generateBeams(m06, {stem_direction: 1});
 VF.Formatter.FormatAndDraw(context6, stave06, m06);
 b06.forEach(function(b) {b.setContext(context6).draw()});
@@ -120,10 +120,10 @@ b06.forEach(function(b) {b.setContext(context6).draw()});
 /*
 	MEASURE 07
 */
-var m07 = getOneCount(variation1).
-		concat(getOneCount(variation2)).
-		concat(getOneCount(variation3)).
-		concat(getOneCount(variation4));
+var m07 = getOneCount(partial1).
+		concat(getOneCount(partial2)).
+		concat(getOneCount(partial3)).
+		concat(getOneCount(partial4));
 var b07 = VF.Beam.generateBeams(m07, {stem_direction: 1});
 VF.Formatter.FormatAndDraw(context7, stave07, m07);
 b07.forEach(function(b) {b.setContext(context7).draw()});
@@ -131,10 +131,10 @@ b07.forEach(function(b) {b.setContext(context7).draw()});
 /*
 	MEASURE 08
 */
-var m08 = getOneCount(variation1).
-		concat(getOneCount(variation2)).
-		concat(getOneCount(variation3)).
-		concat(getOneCount(variation4));
+var m08 = getOneCount(partial1).
+		concat(getOneCount(partial2)).
+		concat(getOneCount(partial3)).
+		concat(getOneCount(partial4));
 var b08 = VF.Beam.generateBeams(m08, {stem_direction: 1});
 VF.Formatter.FormatAndDraw(context8, stave08, m08);
 b08.forEach(function(b) {b.setContext(context8).draw()});

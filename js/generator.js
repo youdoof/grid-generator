@@ -13,9 +13,9 @@ var MEASURE_WIDTH_TWO = MAX_RESOLUTION_WIDTH / TWO_MEASURE_SPAN;
 var MEASURE_HEIGHT = 90;
 
 // Bar Lengths, related to 2, 3, and 4 partials
-var FOUR_PARTIALS = 8;
-var THREE_PARTIALS = 9;
-var TWO_PARTIALS = 4;
+var FOUR_PARTIALS_MEASURE_COUNT = 8;
+var THREE_PARTIALS_MEASURE_COUNT = 9;
+var TWO_PARTIALS_MEASURE_COUNT = 4;
 
 // Partials for creating beats
 var NONE = -1;
@@ -62,12 +62,12 @@ function createStaves(number) {
 
 // Place repeats in measures 
 function createRepeats(staves) {
-	if (staves.length === FOUR_PARTIALS) {
+	if (staves.length === FOUR_PARTIALS_MEASURE_COUNT) {
 		staves[4].setBegBarType(VF.Barline.type.REPEAT_BEGIN);
 		staves[5].setEndBarType(VF.Barline.type.REPEAT_END);
 		staves[6].setBegBarType(VF.Barline.type.REPEAT_BEGIN);
 		staves[7].setEndBarType(VF.Barline.type.REPEAT_END);
-	} else if (staves.length === TWO_PARTIALS) {
+	} else if (staves.length === TWO_PARTIALS_MEASURE_COUNT) {
 		for (var i = 0; i < staves.length; i++) {
 			staves[i].setBegBarType(VF.Barline.type.REPEAT_BEGIN);
 			staves[i].setEndBarType(VF.Barline.type.REPEAT_END);
@@ -192,7 +192,7 @@ function createMeasures(partials) {
 		measures.push(getFourCounts(partials[i]));
 	}
 
-	if (partials.length === FOUR_PARTIALS / 2) {
+	if (partials.length === FOUR_PARTIALS_MEASURE_COUNT / 2) {
 		// *** 2 *** //
 		for (var i = 0; i < partials.length; i = i + 2) {
 			measures.push(getTwoCounts(partials[i]).
@@ -207,7 +207,7 @@ function createMeasures(partials) {
 			measures.push(temp);
 		}
 
-	} else if (partials.length === THREE_PARTIALS / 3) {
+	} else if (partials.length === THREE_PARTIALS_MEASURE_COUNT / 3) {
 		// Will find out soon how to do this.
 	} else {
 		// This for only 2 partials.
