@@ -1,14 +1,15 @@
 // Partial Constructor
-function Partial(rhythm, accent, flam, drag) {
-    this.rhythm = rhythm;
-    this.accent = accent;
-    this.flam = flam;
-    this.drag = drag;
+function Partial(rhythm, accent, flam, drag, buzz) {
+	this.rhythm = rhythm;
+	this.accent = accent;
+	this.flam = flam;
+	this.drag = drag;
+	this.buzz = buzz;
 }
 
 // Partial Methods
-Partial.prototype.getBeat = function() {
-    var notes;
+Partial.prototype.getBeat = function () {
+	var notes;
 
 	if (this.rhythm === SIXTEENTH) {
 		notes = [
@@ -31,20 +32,32 @@ Partial.prototype.getBeat = function() {
 	}
 
 	if (this.flam !== NONE) {
-		notes[this.flam].addModifier(0, addFlam());
+		for (var i = 0; i < this.flam.length; i++) {
+			notes[this.flam[i]].addModifier(0, newFlam());
+		}
 	}
 
 	if (this.accent !== NONE) {
-		notes[this.accent].addArticulation(0, addAccent());
+		for (var i = 0; i < this.accent.length; i++) {
+			notes[this.accent[i]].addArticulation(0, newAccent());
+		}
 	}
 
 	if (this.drag !== NONE) {
-		notes[this.drag].addArticulation(0, newTremolo());
+		for (var i = 0; i < this.drag.length; i++) {
+			notes[this.drag[i]].addArticulation(0, newDrag());
+		}
+	}
+
+	if (this.buzz !== NONE) {
+		for (var i = 0; i < this.buzz.length; i++) {
+			notes[this.buzz[i]].addModifier(0, newBuzz());
+		}
 	}
 
 	return notes;
 }
-Partial.prototype.getFourCounts = function() {
+Partial.prototype.getFourCounts = function () {
 	var fourCounts = [
 		this.getBeat(),
 		this.getBeat(),
@@ -53,14 +66,14 @@ Partial.prototype.getFourCounts = function() {
 	];
 	return fourCounts.reduce((acc, val) => acc.concat(val), []);
 }
-Partial.prototype.getTwoCounts = function() {
+Partial.prototype.getTwoCounts = function () {
 	var twoCounts = [
 		this.getBeat(),
 		this.getBeat()
 	];
 	return twoCounts.reduce((acc, val) => acc.concat(val), []);
 }
-Partial.prototype.getOneCount = function() {
+Partial.prototype.getOneCount = function () {
 	return this.getBeat();
 }
 
@@ -80,12 +93,12 @@ function Measure(partials) {
 		this.p2 = partials[1];
 	}
 }
-Measure.prototype.getFours = function() {
+Measure.prototype.getFours = function () {
 	// Create measures full of the 4 part of 4-2-1
 }
-Measure.prototype.getTwos = function() {
+Measure.prototype.getTwos = function () {
 	// Create measures full of the 2 part of 4-2-1
 }
-Measure.prototype.getOnes = function() {
+Measure.prototype.getOnes = function () {
 	// Create measures full of the 1 part of 4-2-1
 }

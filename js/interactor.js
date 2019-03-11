@@ -25,7 +25,6 @@ var stave05 = new VF.Stave(0, 0, MEASURE_WIDTH_FOUR);
 var stave06 = new VF.Stave(0, 0, MEASURE_WIDTH_FOUR);
 var stave07 = new VF.Stave(0, 0, MEASURE_WIDTH_FOUR);
 var stave08 = new VF.Stave(0, 0, MEASURE_WIDTH_FOUR);
-// var stave09 = new VF.Stave(0, 0, MEAS_WIDTH_TRIP);
 
 // Repeats ?
 stave05.setBegBarType(VF.Barline.type.REPEAT_BEGIN);
@@ -56,13 +55,41 @@ stave08.setContext(context8).draw();
 	the triplet version would have only 3 variants, so need to get that.
 */
 
-var partial1 = new Partial(SIXTEENTH, SECOND_PARTIAL, FIRST_PARTIAL, SECOND_PARTIAL);
+var stay = [FIRST_PARTIAL, SECOND_PARTIAL, FOURTH_PARTIAL];
 
-var partial2 = new Partial(SIXTEENTH, SECOND_PARTIAL, SECOND_PARTIAL, THIRD_PARTIAL);
+var move = [FIRST_PARTIAL, SECOND_PARTIAL, THIRD_PARTIAL, FOURTH_PARTIAL];
 
-var partial3 = new Partial(SIXTEENTH, SECOND_PARTIAL, THIRD_PARTIAL, FOURTH_PARTIAL);
+var partial1 = new Partial(
+	SIXTEENTH,
+	[SECOND_PARTIAL, THIRD_PARTIAL],
+	NONE,
+	[FIRST_PARTIAL, FOURTH_PARTIAL],
+	[SECOND_PARTIAL]
+);
 
-var partial4 = new Partial(SIXTEENTH, SECOND_PARTIAL, FOURTH_PARTIAL, FIRST_PARTIAL);
+var partial2 = new Partial(
+	SIXTEENTH,
+	[FIRST_PARTIAL],
+	NONE,
+	[SECOND_PARTIAL],
+	[THIRD_PARTIAL]
+);
+
+var partial3 = new Partial(
+	SIXTEENTH,
+	[FIRST_PARTIAL, FOURTH_PARTIAL],
+	[THIRD_PARTIAL],
+	NONE,
+	NONE
+);
+
+var partial4 = new Partial(
+	SIXTEENTH,
+	[FOURTH_PARTIAL],
+	NONE,
+	[FOURTH_PARTIAL],
+	[FIRST_PARTIAL]
+);
 
 var partials = [partial1, partial2, partial3, partial4];
 
@@ -71,73 +98,73 @@ var partials = [partial1, partial2, partial3, partial4];
 /*
 	MEASURE 01
 */
-var m01 = getFourCounts(partial1);
-var b01 = VF.Beam.generateBeams(m01, {stem_direction: 1});
+var m01 = partial1.getFourCounts();
+var b01 = VF.Beam.generateBeams(m01, { stem_direction: 1 });
 VF.Formatter.FormatAndDraw(context1, stave01, m01);
-b01.forEach(function(b) {b.setContext(context1).draw()});
+b01.forEach(function (b) { b.setContext(context1).draw() });
 // setContextAndDraw(b01, contexts[0])
 
 /*
 	MEASURE 02
 */
-var m02 = getFourCounts(partial2);
-var b02 = VF.Beam.generateBeams(m02, {stem_direction: 1});
+var m02 = partial2.getFourCounts();
+var b02 = VF.Beam.generateBeams(m02, { stem_direction: 1 });
 VF.Formatter.FormatAndDraw(context2, stave02, m02);
-b02.forEach(function(b) {b.setContext(context2).draw()});
+b02.forEach(function (b) { b.setContext(context2).draw() });
 
 /*
 	MEASURE 03
 */
-var m03 = getFourCounts(partial3);
-var b03 = VF.Beam.generateBeams(m03, {stem_direction: 1});
+var m03 = partial3.getFourCounts();
+var b03 = VF.Beam.generateBeams(m03, { stem_direction: 1 });
 VF.Formatter.FormatAndDraw(context3, stave03, m03);
-b03.forEach(function(b) {b.setContext(context3).draw()});
+b03.forEach(function (b) { b.setContext(context3).draw() });
 
 /*
 	MEASURE 04
 */
-var m04 = getFourCounts(partial4);
-var b04 = VF.Beam.generateBeams(m04, {stem_direction: 1});
+var m04 = partial4.getFourCounts();
+var b04 = VF.Beam.generateBeams(m04, { stem_direction: 1 });
 VF.Formatter.FormatAndDraw(context4, stave04, m04);
-b04.forEach(function(b) {b.setContext(context4).draw()});
+b04.forEach(function (b) { b.setContext(context4).draw() });
 
 /*
 	MEASURE 05
 */
-var m05 = getTwoCounts(partial1).concat(getTwoCounts(partial2));
-var b05 = VF.Beam.generateBeams(m05, {stem_direction: 1});
+var m05 = partial1.getTwoCounts().concat(partial2.getTwoCounts());
+var b05 = VF.Beam.generateBeams(m05, { stem_direction: 1 });
 VF.Formatter.FormatAndDraw(context5, stave05, m05);
-b05.forEach(function(b) {b.setContext(context5).draw()});
+b05.forEach(function (b) { b.setContext(context5).draw() });
 
 /*
 	MEASURE 06
 */
-var m06 = getTwoCounts(partial3).concat(getTwoCounts(partial4));
-var b06 = VF.Beam.generateBeams(m06, {stem_direction: 1});
+var m06 = partial3.getTwoCounts().concat(partial4.getTwoCounts());
+var b06 = VF.Beam.generateBeams(m06, { stem_direction: 1 });
 VF.Formatter.FormatAndDraw(context6, stave06, m06);
-b06.forEach(function(b) {b.setContext(context6).draw()});
+b06.forEach(function (b) { b.setContext(context6).draw() });
 
 /*
 	MEASURE 07
 */
-var m07 = getOneCount(partial1).
-		concat(getOneCount(partial2)).
-		concat(getOneCount(partial3)).
-		concat(getOneCount(partial4));
-var b07 = VF.Beam.generateBeams(m07, {stem_direction: 1});
+var m07 = partial1.getOneCount().
+	concat(partial2.getOneCount()).
+	concat(partial3.getOneCount()).
+	concat(partial4.getOneCount());
+var b07 = VF.Beam.generateBeams(m07, { stem_direction: 1 });
 VF.Formatter.FormatAndDraw(context7, stave07, m07);
-b07.forEach(function(b) {b.setContext(context7).draw()});
+b07.forEach(function (b) { b.setContext(context7).draw() });
 
 /*
 	MEASURE 08
 */
-var m08 = getOneCount(partial1).
-		concat(getOneCount(partial2)).
-		concat(getOneCount(partial3)).
-		concat(getOneCount(partial4));
-var b08 = VF.Beam.generateBeams(m08, {stem_direction: 1});
+var m08 = partial1.getOneCount().
+	concat(partial2.getOneCount()).
+	concat(partial3.getOneCount()).
+	concat(partial4.getOneCount());
+var b08 = VF.Beam.generateBeams(m08, { stem_direction: 1 });
 VF.Formatter.FormatAndDraw(context8, stave08, m08);
-b08.forEach(function(b) {b.setContext(context8).draw()});
+b08.forEach(function (b) { b.setContext(context8).draw() });
 
 /*
 	MEASURE 09
@@ -174,7 +201,7 @@ var btn = document.querySelector("#generateBtn");
 // This code coupled with css entry for SVG makes the svg scale and respond to the
 // webpage changing size and shape
 var svg = document.querySelectorAll('svg');
-svg.forEach(function(f){
+svg.forEach(function (f) {
 	f.setAttribute("viewBox", `0 0 ${MEASURE_WIDTH_FOUR} ${MEASURE_HEIGHT}`);
 })
 

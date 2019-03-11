@@ -60,7 +60,7 @@ function createStaves(number) {
 	return staves;
 }
 
-// Place repeats in measures 
+// Place repeats in measures
 function createRepeats(staves) {
 	if (staves.length === FOUR_PARTIALS_MEASURE_COUNT) {
 		staves[4].setBegBarType(VF.Barline.type.REPEAT_BEGIN);
@@ -83,7 +83,7 @@ function setContextAndDraw(obj, ctx) {
 
 // new VF.StaveNote({keys: ["c/5"], duration: "16"})
 function createNote(duration) {
-	return new VF.StaveNote({keys: ["c/5"], duration: duration});
+	return new VF.StaveNote({ keys: ["c/5"], duration: duration });
 }
 
 function rhythmSixteenth() {
@@ -110,19 +110,24 @@ function rhythmEighth() {
 	];
 }
 
-// .addArticulation(0, addAccent())
-function addAccent() {
+// .addArticulation(0, newAccent())
+function newAccent() {
 	return new VF.Articulation("a>").setPosition(3);
 }
 
-// .addModifier(0, addFlam())
-function addFlam() {
-	var flam = new VF.GraceNote({keys: ["c/5"], duration: "8", slash: false });
+// .addModifier(0, newFlam())
+function newFlam() {
+	var flam = new VF.GraceNote({ keys: ["c/5"], duration: "8", slash: false });
 	return new VF.GraceNoteGroup([flam]);
 }
 
-function newTremolo() {
+function newDrag() {
 	return new VF.Tremolo(1);
+}
+
+function newBuzz() {
+	// Mordent.
+	return new VF.Ornament("mordent");
 }
 
 // Work in progress here.
@@ -139,15 +144,19 @@ function getBeat(obj) {
 	}
 
 	if (obj.flam !== NONE) {
-		notes[obj.flam].addModifier(0, addFlam());
+		notes[obj.flam].addModifier(0, newFlam());
 	}
 
 	if (obj.accent !== NONE) {
-		notes[obj.accent].addArticulation(0, addAccent());
+		notes[obj.accent].addArticulation(0, newAccent());
 	}
 
 	if (obj.drag !== NONE) {
-		notes[obj.drag].addArticulation(0, newTremolo());
+		notes[obj.drag].addArticulation(0, newDrag());
+	}
+
+	if (obj.buzz !== NONE) {
+		notes[obj.buzz].addModifier(0, newBuzz());
 	}
 
 	return notes;
@@ -196,7 +205,7 @@ function createMeasures(partials) {
 		// *** 2 *** //
 		for (var i = 0; i < partials.length; i = i + 2) {
 			measures.push(getTwoCounts(partials[i]).
-			concat(getTwoCounts(partials[i+1])));
+				concat(getTwoCounts(partials[i + 1])));
 		}
 		// *** 1 *** //
 		for (var i = 0; i < 2; i++) {
